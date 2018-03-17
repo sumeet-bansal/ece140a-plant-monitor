@@ -7,8 +7,6 @@ from sqlite3 import dbapi2 as sqlite3
 import json
 from itertools import zip_longest as izip
 
-from pprint import pprint
-
 ##### APP SETUP #####
 app = Flask(__name__)
 
