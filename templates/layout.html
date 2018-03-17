@@ -1,0 +1,136 @@
+<!-- assignment6/templates/layout.html -->
+
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>ECE 140A Lab 4</title>
+	<link rel="stylesheet" href="../static/dashboard.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script type="text/javascript" src="../static/chart.js"></script>
+
+</head>
+
+<body class="container justify-content-center" onload="generateCharts()">
+
+	<div id="charts-div" class="row text-center">
+		{% for table in tables %}
+		<div class="col-4">
+			<button class="btn btn-lg btn-block btn-outline-secondary" id="{{table}}-button" onclick="window.location.href='/details/{{table}}'">{{table}}</button>
+		</div>
+		{% endfor %}
+	</div>
+
+	{% block body %}
+
+	<h1 style="margin-top: 1%;">Lab 4 Readings</h1>
+	{% for table in tables %}
+	<canvas id="{{table}}-chart" class="chart" style="width: 100%;"></canvas>
+	{% endfor %}
+
+	<script>
+
+	var color1 = '#9966ff';
+	var color2 = '#428bca';
+	var color3 = '#5cb85c';
+	var color4 = '#d9534f';
+	var color5 = '#fc9c36';
+
+	var options = {
+		scales: {
+			yAxes: [{
+				ticks: {
+					beginAtZero: true
+				}
+			}],
+			xAxes: [{
+				ticks: {
+					maxTicksLimit: 12
+				}
+			}]
+		},
+		responsive: false
+	}
+
+	function generateCharts() {
+
+		// sets up y-axis as interval [0, 60)
+		var timeframe = [];
+		for (var i = 0; i < 60; i++) {
+			timeframe.push(i);
+		}
+
+		var ctx = document.getElementById("temperature-chart").getContext('2d');
+		var myLineChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: timeframe,
+				datasets: [{
+					label: 'Temperature',
+					data: {{data.temp}},
+					backgroundColor: color1,
+					borderColor: color1,
+					fill: false,
+					borderWidth: 1
+				}]
+			},
+			options: options
+		});
+
+		var ctx = document.getElementById("humidity-chart").getContext('2d');
+		var myLineChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: timeframe,
+				datasets: [{
+					label: 'Humidity',
+					data: {{data.humidity}},
+					backgroundColor: color2,
+					borderColor: color2,
+					fill: false,
+					borderWidth: 1
+				}]
+			},
+			options: options
+		});
+
+		var ctx = document.getElementById("sound-chart").getContext('2d');
+		var myLineChart = new Chart(ctx, {
+			type: 'line',
+			data: {
+				labels: timeframe,
+				datasets: [{
+					label: 'Noise',
+					data: {{data.noise}},
+					backgroundColor: color3,
+					borderColor: color3,
+					fill: false,
+					borderWidth: 1
+				}, {
+					label: 'Envelope',
+					data: {{data.envelope}},
+					backgroundColor: color4,
+					borderColor: color4,
+					fill: false,
+					borderWidth: 1
+				}, {
+					label: 'Gate',
+					data: {{data.gate}},
+					backgroundColor: color5,
+					borderColor: color5,
+					fill: false,
+					borderWidth: 1
+				}]
+			},
+			options: options
+		});
+	}
+	
+	</script>
+
+	{% endblock %}
+
+	</body>
+</html>
+

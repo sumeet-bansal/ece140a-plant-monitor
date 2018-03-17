@@ -1,0 +1,56 @@
+/* lab4/static/dashboard.css */
+
+.lw {
+	font-size: 60px;
+	background: blue;
+	color: white;
+}
+
+body {
+	background: #fcfcfc;
+	padding-top: 5px;
+	padding-bottom: 50px;
+}
+
+h1, h2 {
+	text-align: center;
+	color: #3a3a3a;
+}
+
+h2 {
+	padding-top: 1%;
+}
+
+table {
+	width: 50%;
+	margin: 0 auto;
+	float: none;
+}
+
+th {
+	padding: 5px;
+}
+
+td {
+	padding: 12px;
+}
+
+td.value {
+	padding-left: 25px;
+	padding-right: 25px;
+	color: #323232;
+}
+
+tr.row:hover {
+	background-color: #f2f2f2;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+
+tr.table-header {
+	background-color: #537979 ;
+	color: white;
+	border-color: #537979 ;
+}
