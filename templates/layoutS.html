@@ -2,9 +2,16 @@
 
 {% block body %}
 <div class="text-center justify-content-center">
+
+	<script>
+	document.getElementById('temperature-chart').style.display = "none";
+	document.getElementById('humidity-chart').style.display = "none";
+	document.getElementById('sound-chart').style.display = "block";
+	</script>
+
 	<table style="width:100%">
-		<h2>Sound</h2>
 		<tr>
+			<th>Minute</th>
 			<th>Noise</th>
 			<th>Envelope</th>
 			<th>Gate</th>
@@ -12,6 +19,7 @@
 
 		{% for entry in entries %}
 		<tr>
+			<th>{{entry.id}}</th>
 			<th>{{entry.noise}}</th>
 			<th>{{entry.envelope}}</th>
 			<th>{{entry.gate}}</th>

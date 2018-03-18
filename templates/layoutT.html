@@ -2,15 +2,23 @@
 
 {% block body %}
 <div class="text-center justify-content-center">
+
+	<script>
+	document.getElementById('temperature-chart').style.display = "block";
+	document.getElementById('humidity-chart').style.display = "none";
+	document.getElementById('sound-chart').style.display = "none";
+	</script>
+
 	<table style="width: 100%">
-		<h2>Temperature</h2>
 		<tr>
+			<th>Minute</th>
 			<th>Fahrenheit</th>
 			<th>Celsius</th>
 		</tr>
 
 		{% for entry in entries %}
 		<tr>
+			<th>{{entry.id}}</th>
 			<th>{{entry.temp_f}}</th>
 			<th>{{entry.temp_c}}</th>
 		</tr>

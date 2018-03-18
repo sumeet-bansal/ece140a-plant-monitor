@@ -25,8 +25,6 @@
 		{% endfor %}
 	</div>
 
-	{% block body %}
-
 	<h1 style="margin-top: 1%;">Lab 4 Readings</h1>
 	{% for table in tables %}
 	<canvas id="{{table}}-chart" class="chart" style="width: 100%;"></canvas>
@@ -132,6 +130,7 @@
 	
 	</script>
 
+	{% block body %}
 	{% endblock %}
 
 	</body>

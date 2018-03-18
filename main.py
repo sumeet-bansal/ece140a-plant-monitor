@@ -102,7 +102,7 @@ def index():
 @app.route('/details/<sensor>')
 def details(sensor):
 	db = get_db()
-	cur = db.execute('SELECT * FROM %s' % sensor).fetchall()
+	cur = db.execute('SELECT * FROM %s ORDER BY id DESC' % sensor).fetchall()
 	templateName = 'layout%s.html' % (sensor[0].upper())
 	return render_template(templateName, data=query(), entries=cur, tables=tablenames())
 
@@ -112,33 +112,6 @@ def api(sensor):
 	db = get_db()
 	cur = db.execute('SELECT * FROM %s ORDER BY id DESC LIMIT %s' % (sensor, count)).fetchall()
 	return cur
-
-@app.route('/ins/temperature', methods=['POST'])
-def insertT():
-	db=get_db()
-	f = float(request.form['temp_f'])
-	c = float(request.form['temp_c'])
-	cur = db.execute('INSERT INTO temperature(temp_f,temp_c) VALUES (%f, %f);' % (f,c))
-	db.commit()
-	return redirect('/details/temperature')
-
-@app.route('/ins/humidity', methods=['POST'])
-def insertH():
-	db=get_db()
-	v = float(request.form['value'])
-	cur = db.execute('INSERT INTO  Humidity(value) VALUES  (%f);' % (v))
-	db.commit()
-	return redirect('/details/humidity')
-
-@app.route('/ins/sound', methods=['POST'])
-def insertS():
-	db=get_db()
-	n = float(request.form['noise'])
-	e = float(request.form['envelope'])
-	g = float(request.form['gate'])
-	cur = db.execute('INSERT INTO Sound(noise, envelope, gate) VALUES (%f, %f, %f);' % (n,e,g))
-	db.commit()
-	return redirect('/details/sound')
 
 @app.route('/ins/<sensor>', methods=['POST'])
 def insert():
