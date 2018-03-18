@@ -15,8 +15,11 @@
 <body class="container justify-content-center" onload="generateCharts()">
 
 	<div id="charts-div" class="row text-center">
+		<div class="col-3">
+			<button class="btn btn-lg btn-block btn-outline-secondary" onclick="window.location.href='/'">Overview</button>
+		</div>
 		{% for table in tables %}
-		<div class="col-4">
+		<div class="col-3">
 			<button class="btn btn-lg btn-block btn-outline-secondary" id="{{table}}-button" onclick="window.location.href='/details/{{table}}'">{{table}}</button>
 		</div>
 		{% endfor %}
