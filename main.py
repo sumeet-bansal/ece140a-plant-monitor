@@ -104,7 +104,7 @@ def details(sensor):
 	db = get_db()
 	cur = db.execute('SELECT * FROM %s' % sensor).fetchall()
 	templateName = 'layout%s.html' % (sensor[0].upper())
-	return render_template(templateName, entries=cur, tables=tablenames())
+	return render_template(templateName, data=query(), entries=cur, tables=tablenames())
 
 @app.route('/api/<sensor>', methods=['GET'])
 def api(sensor):
