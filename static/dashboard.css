@@ -41,12 +41,13 @@ td.value {
 	color: #323232;
 }
 
-tr.row:hover {
+tr:nth-child(even) {
 	background-color: #f2f2f2;
 }
 
-tr:nth-child(even) {
-	background-color: #f2f2f2;
+tr:hover {
+	color: #fff;
+	background-color: #000;
 }
 
 tr.table-header {
