@@ -3,7 +3,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-	<title>ECE 140A Lab 4</title>
+	<title>ECE 140A Plant Monitor</title>
 	<link rel="stylesheet" href="../static/dashboard.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
 
@@ -25,7 +25,7 @@
 		{% endfor %}
 	</div>
 
-	<h1 style="margin-top: 1%;">Lab 4 Readings</h1>
+	<h1 style="margin-top: 1%;">Plant Monitor Readings</h1>
 	{% for table in tables %}
 	<canvas id="{{table}}-chart" class="chart" style="width: 100%;"></canvas>
 	{% endfor %}
